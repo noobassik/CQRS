@@ -12,12 +12,12 @@ namespace Application.Topics
             throw new NotImplementedException();
         }
 
-        public Task DeleteTopicAsync(TopicId id)
+        public Task DeleteTopicAsync(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Topic> GetTopicAsync()
+        public Task<Topic> GetTopicAsync(Guid id)
         {
             throw new NotImplementedException();
         }
@@ -29,7 +29,7 @@ namespace Application.Topics
             return topics;
         }
 
-        public Task<Topic> UpdateTopicAsync(TopicId id, Topic topicRequestDto)
+        public Task<Topic> UpdateTopicAsync(Guid id, Topic topicRequestDto)
         {
             throw new NotImplementedException();
         }
