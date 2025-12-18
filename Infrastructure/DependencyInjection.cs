@@ -1,4 +1,5 @@
-﻿using Infrastructure.Data.DataBaseContext;
+﻿using CQRS.Application.Data.DataBaseContext;
+using Infrastructure.Data.DataBaseContext;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,6 +15,8 @@ namespace Infrastructure
             {
                 options.UseNpgsql(connectionString);
             });
+
+            services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
 
             return services;
         }
