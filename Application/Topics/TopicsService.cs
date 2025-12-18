@@ -1,4 +1,5 @@
 ﻿using Application.Dtos;
+using Application.Exceptions;
 using Application.Extensions;
 using CQRS.Application.Data.DataBaseContext;
 using CQRS.Domain.ValueObjects;
@@ -19,9 +20,17 @@ namespace Application.Topics
             throw new NotImplementedException();
         }
 
-        public Task<TopicResponseDto> GetTopicAsync(Guid id)
+        public async Task<TopicResponseDto> GetTopicAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var topicId = TopicId.Of(id);
+            var result = await dbContext.Topics.FindAsync([topicId]);
+
+            if (result is null)
+            {
+                throw new TopicNotFoundException(id);
+            }
+
+            return result.ToTopicResponseDto();
         }
 
         public async Task<List<TopicResponseDto>> GetTopicsAsync()
