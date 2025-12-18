@@ -2,6 +2,10 @@ using Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Logging.AddConfiguration(
+    builder.Configuration.GetSection("Logging")
+);
+
 builder.Services
     .AddApiServices(builder.Configuration)
     .AddInfrastructureServices(builder.Configuration)
