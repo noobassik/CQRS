@@ -1,7 +1,4 @@
-﻿using CQRS.Domain.Models;
-using Microsoft.EntityFrameworkCore;
-
-namespace CQRS.Application.Data.DataBaseContext
+﻿namespace CQRS.Application.Data.DataBaseContext
 {
     public interface IApplicationDbContext
     {

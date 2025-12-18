@@ -1,9 +1,7 @@
 ﻿using CQRS.Application.Data.DataBaseContext;
-using CQRS.Domain.Models;
-using CQRS.Domain.ValueObjects;
-using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
-namespace CQRS.Infrastructure.Data.DataBaseContext
+namespace Infrastructure.Data.DataBaseContext
 {
     public class ApplicationDbContext : DbContext, IApplicationDbContext
     {
@@ -15,18 +13,11 @@ namespace CQRS.Infrastructure.Data.DataBaseContext
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Topic>()
-                .Property(topic => topic.Id)
-                .HasConversion(id => id.Value,
-                                value => TopicId.Of(value)
-                );
+            base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Topic>()
-                .OwnsOne(topic => topic.Location, location =>
-                {
-                    location.Property(l => l.City).HasColumnName("City");
-                    location.Property(s => s.Street).HasColumnName("Street");
-                });
+            modelBuilder.ApplyConfigurationsFromAssembly(
+                Assembly.GetExecutingAssembly()
+            );
         }
     }
 }
