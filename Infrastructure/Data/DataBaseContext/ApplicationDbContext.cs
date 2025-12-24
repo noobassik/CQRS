@@ -7,7 +7,7 @@ namespace Infrastructure.Data.DataBaseContext
     {
         public DbSet<Topic> Topics => Set<Topic>();
 
-        public ApplicationDbContext(DbContextOptions options) : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
         

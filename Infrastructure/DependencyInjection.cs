@@ -18,7 +18,9 @@ namespace Infrastructure
 
             services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
 
-            return services;
+			AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
+			return services;
         }
     }
 }

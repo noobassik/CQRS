@@ -13,7 +13,7 @@ namespace Infrastructure.Data.Extensions
             var dbContext = scope
                 .ServiceProvider
                 .GetRequiredService<ApplicationDbContext>();
-            dbContext.Database.MigrateAsync().GetAwaiter().GetResult();
+            await dbContext.Database.MigrateAsync();
 
             await SeedData(dbContext);
         }
