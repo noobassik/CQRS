@@ -1,8 +1,4 @@
-﻿using Application.Dtos;
-using Application.Exceptions;
-using Application.Extensions;
-using CQRS.Application.Data.DataBaseContext;
-using CQRS.Domain.ValueObjects;
+﻿using CQRS.Application.Data.DataBaseContext;
 using Microsoft.Extensions.Logging;
 
 namespace Application.Topics

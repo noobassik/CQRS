@@ -1,7 +1,4 @@
-﻿using Application.Dtos;
-using CQRS.Domain.ValueObjects;
-
-namespace Application.Topics
+﻿namespace Application.Topics
 {
     public interface ITopicsService
     {
