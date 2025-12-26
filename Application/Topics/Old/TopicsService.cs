@@ -1,8 +1,9 @@
 ﻿using CQRS.Application.Data.DataBaseContext;
 using Microsoft.Extensions.Logging;
 
-namespace Application.Topics
-{
+namespace Application.Topics.Old
+{ 
+    [Obsolete]
     public class TopicsService(IApplicationDbContext dbContext,
         ILogger<TopicsService> logger) : ITopicsService
     {

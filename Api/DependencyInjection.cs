@@ -20,6 +20,9 @@ namespace Api
                 });
             });
 
+            services.AddMediatR(config => config
+                .RegisterServicesFromAssemblies(typeof(GetTopicsHandler).Assembly));
+
             return services;
         }
 

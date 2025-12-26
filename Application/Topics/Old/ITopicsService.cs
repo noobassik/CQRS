@@ -1,5 +1,6 @@
-﻿namespace Application.Topics
+﻿namespace Application.Topics.Old
 {
+    [Obsolete]
     public interface ITopicsService
     {
         Task<List<TopicResponseDto>> GetTopicsAsync();
