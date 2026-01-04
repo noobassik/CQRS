@@ -26,19 +26,5 @@
 
             return topic;
         }
-
-		public void Update(string title, string summary, string topicType,
-						   DateTime eventStart, string city, string street)
-		{
-			this.Title = title ?? this.Title;
-			this.Summary = summary ?? this.Summary;
-			this.TopicType = topicType ?? this.TopicType;
-			this.EventStart = eventStart; 
-			this.Location = Location.Of(
-				city ?? this.Location.City,
-				street ?? this.Location.Street
-			);
-		}
-
 	}
 }

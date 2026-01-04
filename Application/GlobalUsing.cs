@@ -6,3 +6,4 @@ global using Application.Extensions;
 global using CQRS.Domain.ValueObjects;
 global using CQRS.Application.Data.DataBaseContext;
 global using Shared.CQRS;
+global using AutoMapper;
