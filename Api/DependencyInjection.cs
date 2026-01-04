@@ -23,6 +23,8 @@ namespace Api
             services.AddMediatR(config => config
                 .RegisterServicesFromAssemblies(typeof(GetTopicsHandler).Assembly));
 
+            services.AddAutoMapper(typeof(MappingProfile).Assembly);
+
             return services;
         }
 
