@@ -1,4 +1,5 @@
 ﻿using Api.Exceptions.Handler;
+using Api.Security.Extensions;
 
 namespace Api
 {
@@ -24,6 +25,8 @@ namespace Api
                 .RegisterServicesFromAssemblies(typeof(GetTopicsHandler).Assembly));
 
             services.AddAutoMapper(typeof(MappingProfile).Assembly);
+
+            services.AddIdentityServices(configuration);
 
             return services;
         }
