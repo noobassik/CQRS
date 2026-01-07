@@ -1,5 +1,7 @@
-﻿using Infrastructure.Data.DataBaseContext;
+﻿using Domain.Security;
+using Infrastructure.Data.DataBaseContext;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
 
@@ -13,14 +15,20 @@ namespace Infrastructure.Data.Extensions
             var dbContext = scope
                 .ServiceProvider
                 .GetRequiredService<ApplicationDbContext>();
+
+            var manager = scope
+                .ServiceProvider
+                .GetRequiredService<UserManager<CustomIdentityUser>>();
+
             await dbContext.Database.MigrateAsync();
 
-            await SeedData(dbContext);
+            await SeedData(dbContext, manager);
         }
 
-        private static async Task SeedData(ApplicationDbContext dbContext)
+        private static async Task SeedData(ApplicationDbContext dbContext, UserManager<CustomIdentityUser> manager)
         {
             await SeedTopicsAsync(dbContext);
+            await SeedIdentityUsersAsync(dbContext, manager);
         }
 
         private static async Task SeedTopicsAsync(ApplicationDbContext dbContext)
@@ -31,5 +39,17 @@ namespace Infrastructure.Data.Extensions
                 await dbContext.SaveChangesAsync();
             }
         }
-    }
+
+        private static async Task SeedIdentityUsersAsync(ApplicationDbContext dbContext,
+            UserManager<CustomIdentityUser> manager)
+        {
+            if (!manager.Users.Any())
+            {
+                foreach (var user in InitialData.IdentityUsers)
+                {
+                    await manager.CreateAsync(user, "1111");
+                }
+            }
+        }
+	}
 }
