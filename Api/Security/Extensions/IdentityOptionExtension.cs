@@ -1,7 +1,9 @@
 ﻿using Api.Security.Services;
 using Domain.Security;
+using Domain.Security.Dtos;
 using Infrastructure.Data.DataBaseContext;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -18,6 +20,7 @@ namespace Api.Security.Extensions
 				options.Password.RequireLowercase = false;
 				options.Password.RequireUppercase = false;
 				options.Password.RequireNonAlphanumeric = false;
+				options.User.RequireUniqueEmail = true;
 			})
 			.AddEntityFrameworkStores<ApplicationDbContext>();
 
