@@ -1,5 +1,7 @@
 ﻿using Api.Exceptions.Handler;
 using Api.Security.Extensions;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace Api
 {
@@ -8,7 +10,13 @@ namespace Api
         public static IServiceCollection AddApiServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddExceptionHandler<CustomExceptionHandler>();
-            services.AddControllers();
+            services.AddControllers(options =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+                options.Filters.Add(new AuthorizeFilter(policy));
+            });
             services.AddOpenApi();
 
             services.AddCors(options =>
