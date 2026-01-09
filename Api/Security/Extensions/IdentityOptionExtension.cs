@@ -1,9 +1,6 @@
-﻿using Api.Security.Services;
-using Domain.Security;
-using Domain.Security.Dtos;
+﻿using Domain.Security;
 using Infrastructure.Data.DataBaseContext;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -42,10 +39,7 @@ namespace Api.Security.Extensions
 				};
 			});
 
-			services.AddScoped<IJwtSecurityService, JwtSecurityService>();
-
 			return services;
 		}
-
 	}
 }
